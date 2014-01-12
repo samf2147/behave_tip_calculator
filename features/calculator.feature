@@ -16,8 +16,12 @@ Feature: Confirming that the tip calculator form displays
         Then I should see an error page
     
     Scenario: check negative tip
-    Scenario: check negative total
         When I go to the tip calculator
         And I submit the form with a negative tip
         Then I should see an error page
+    
+    Scenario: check non-integer inputs
+        When I go to the tip calculator
+        And I submit the form with non-integer total and tip
+        Then I should see my answer rounded to two decimal places
     

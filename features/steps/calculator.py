@@ -49,3 +49,15 @@ def step_impl(context):
 @then(u'I should see an error page')
 def step_impl(context):
     assert context.browser.find_element_by_id('error_message')
+
+#rounding with floating point numbers
+@when(u'I submit the form with non-integer total and tip')
+def step_impl(context):
+    br = context.browser
+    br.find_element_by_name('meal_cost').send_keys('30.58')
+    br.find_element_by_name('tip_percentage').send_keys('20.95')
+    br.find_element_by_id('submit').click()
+
+@then(u'I should see my answer rounded to two decimal places')
+def step_impl(context):
+    assert context.browser.find_element_by_id('results').text == u'$6.41'
