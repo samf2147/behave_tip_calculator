@@ -1,3 +1,5 @@
+#module runs before and after all .py files in step directory
+
 import logging
 from selenium import webdriver
 
