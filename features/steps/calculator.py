@@ -29,3 +29,23 @@ def step_impl(context):
 def step_impl(context):
     br = context.browser
     assert br.find_element_by_id('results').text == '$6.00'
+
+#bad inputs
+
+@when(u'I submit the form with a negative total')
+def step_impl(context):
+    br = context.browser
+    br.find_element_by_name('meal_cost').send_keys('-30')
+    br.find_element_by_name('tip_percentage').send_keys('20')
+    br.find_element_by_id('submit').click()
+
+@when(u'I submit the form with a negative tip')
+def step_impl(context):
+    br = context.browser
+    br.find_element_by_name('meal_cost').send_keys('30')
+    br.find_element_by_name('tip_percentage').send_keys('-20')
+    br.find_element_by_id('submit').click()
+
+@then(u'I should see an error page')
+def step_impl(context):
+    assert context.browser.find_element_by_id('error_message')

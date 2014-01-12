@@ -9,3 +9,15 @@ Feature: Confirming that the tip calculator form displays
         And I submit the form with a valid total and tip percentage
         Then I should see the results page
         And the results are accurate
+    
+    Scenario: check negative total
+        When I go to the tip calculator
+        And I submit the form with a negative total
+        Then I should see an error page
+    
+    Scenario: check negative tip
+    Scenario: check negative total
+        When I go to the tip calculator
+        And I submit the form with a negative tip
+        Then I should see an error page
+    

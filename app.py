@@ -8,8 +8,13 @@ def home():
     
 @app.route('/results', methods=['POST'])
 def results():
-    tip = 0.01 * float(request.form['meal_cost']) * float(request.form['tip_percentage'])
-    return render_template('results.html', tip='${0:.2f}'.format(tip))
+    meal_cost = float(request.form['meal_cost'])
+    tip_percentage = float(request.form['tip_percentage'])
+    if(meal_cost < 0 or tip_percentage < 0):
+        return render_template('error.html')
+    else:
+		tip = 0.01 * meal_cost * tip_percentage
+		return render_template('results.html', tip='${0:.2f}'.format(tip))
 
 if __name__ == '__main__':
     app.run(debug=True)
